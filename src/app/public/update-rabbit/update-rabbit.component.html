@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<app-header></app-header>
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <app-navbar></app-navbar>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_sidebar.html -->
+      <app-sidebar></app-sidebar>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h4 class="font-weight-bold mb-0">Rabbit</h4>
+                </div>
+                <div class="template-demo">
+                    <button type="button"routerLink="/add" class="btn btn-primary btn-icon-text btn-rounded">
+                      <i class="ti-clipboard btn-icon-prepend"></i>Ajouter
+                    </button>
+                    <button type="button" routerLink="/" class="btn btn-info btn-icon-text btn-rounded">
+                      <i class="ti-clipboard btn-icon-prepend"></i>Liste
+                    </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 mx-auto grid-margin stretch-card">
+              <div class="card text-center">
+                <div class="card-body">
+                  <div class="my-custom-toast" [ngStyle]="{'color':messageColor}">
+                    <div class="toast-icon">
+                      <i class="fa fa-check"></i>
+                    </div>
+                    <div class="toast-message">
+                      <div class="toast-title">{{ titleToast }}</div>
+                      <div class="toast-content">{{ messageToast }}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title mb-0">Modifier un Lapin</p>
+                  <div class="table-responsive" style="height: 600px;">
+                    <br><br>
+                    <form class="forms-sample" [formGroup]="formGroup">
+                        <div class="form-group">
+                          <label for="name">Nom</label>
+                          <input type="text" class="form-control" [formControl]="nameCtr" placeholder="Nom" required>
+                        </div>
+                        <span *ngIf="!nameCtr.valid && (nameCtr.dirty || nameCtr.touched)" style="color: red;">Veillez entrer votre nom d'utilisateur</span>
+                        <div class="form-group">
+                          <label for="image">Photo</label>
+                          <input type="file" class="form-control" id="image" [formControl]="imageCtr" placeholder="Photo">
+                        </div>
+                        <button type="submit" class="btn btn-primary me-2" (click)="updateRabbit()">Submit</button>
+                        <button class="btn btn-light" (click)="onCancel()">Cancel</button>
+                      </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <app-footer></app-footer>
+
+</body>
+
+</html>
+

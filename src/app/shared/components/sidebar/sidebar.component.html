@@ -1,0 +1,43 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="">
+          <i class="ti-home menu-icon"></i>
+          <span class="menu-title">Home</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="#user" aria-expanded="false" aria-controls="ui-basic">
+          <i class="ti-user menu-icon"></i>
+          <span class="menu-title">Utilisateurs</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="user">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" routerLink="/users">Users</a></li>
+            <li class="nav-item"> <a class="nav-link" routerLink="/auth/register">Ajouter User</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="#rabbit" aria-expanded="false" aria-controls="ui-basic">
+          <i class="ti-palette menu-icon"></i>
+          <span class="menu-title">Lapins</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="rabbit">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" routerLink="/">Liste des Lapins</a></li>
+            <li class="nav-item"> <a class="nav-link" routerLink="/add">Ajouter Lapin</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="onLogout()">
+          <i class="ti-power-off menu-icon"></i>
+          <span class="menu-title">Déconnexion</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  

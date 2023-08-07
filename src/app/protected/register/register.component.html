@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<app-header></app-header>
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <app-navbar></app-navbar>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_sidebar.html -->
+      <app-sidebar></app-sidebar>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h4 class="font-weight-bold mb-0">Rabbit</h4>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-primary btn-icon-text btn-rounded" routerLink="/">
+                      <i class="ti-clipboard btn-icon-prepend"></i>Liste des Utilisateurs
+                    </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 mx-auto grid-margin stretch-card">
+              <div class="card text-center">
+                <div class="card-body">
+                  <div class="my-custom-toast" [ngStyle]="{'color':messageColor}">
+                    <div class="toast-icon">
+                      <i class="fa fa-check"></i>
+                    </div>
+                    <div class="toast-message">
+                      <div class="toast-title">{{ titleToast }}</div>
+                      <div class="toast-content">{{ messageToast }}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title mb-0">Ajouter un Utilisateur</p>
+                  <div class="table-responsive" style="height: 600px;">
+                    <br><br>
+                    <form class="forms-sample" [formGroup]="formGroup">
+                        <div class="form-group">
+                            <label for="name">Nom</label>
+                            <input type="text" class="form-control" formControlName="name" id="name" placeholder="Nom">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" formControlName="username" placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Confirmer Password</label>
+                            <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword" placeholder="Confirmer Password">
+                            <div *ngIf="formGroup.errors?.['passwordMismatchError'] && getControl('confirmPassword')?.touched" class="alert alert-danger">
+                                <small class="text-danger">Les Passwords ne correspondent pas !!!</small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleSelectGender">Role</label>
+                            <select class="form-control" formControlName="roles" id="exampleSelectGender">
+                                <option value="USER">User</option>
+                                <option value="ADMIN">Admin</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary me-2" (click)="addUser()">Submit</button>
+                        <button class="btn btn-light" (click)="onCancel()">Cancel</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <app-footer></app-footer>
+
+</body>
+
+</html>
+
