@@ -14,10 +14,20 @@ export class AuthGuard implements CanActivate{
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree{
         console.log("isloggedIn ===> ", this.authService.isloggedIn);
-            if (this.authService.isloggedIn) {
+            /*if (this.authService.isloggedIn) {
                 return true;
             } else {
                 this.router.navigate(['/auth/login']);
+                return false;
+            }*/
+
+            const token = localStorage.getItem('token');
+            if (token) {
+                // Vérifiez la validité du token et définissez l'état d'authentification en conséquence
+                this.authService.isloggedIn= true;
+                return true;
+            } else {
+                this.router.navigate(['/login']); // Redirigez vers la page de connexion si le token n'est pas présent
                 return false;
             }
 

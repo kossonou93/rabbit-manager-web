@@ -47,6 +47,7 @@ export class LoginComponent implements OnInit {
           let user = data.body?.data.user!;
           this.authService.saveToken(jwToken, user);
           this.authService.isloggedIn = true;
+          localStorage.setItem('token', jwToken);
           this.router.navigate(['/']);
         },
         error: (err: any) => {

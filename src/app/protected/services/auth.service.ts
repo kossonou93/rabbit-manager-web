@@ -15,6 +15,13 @@ import { ApiResponse } from 'src/app/models/ApiResponse.model';
 )
 export class AuthService {
 
+  private checkToken(): void {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.isloggedIn = true;
+    }
+  }
+
   token!: string;
   public roles!: string[];
   role! : string[];
@@ -22,7 +29,9 @@ export class AuthService {
   public isloggedIn: Boolean = false;
   private helper = new JwtHelperService();
 
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient) {
+    this.checkToken();
+  }
 
   logout() {
     this.isloggedIn = false;
