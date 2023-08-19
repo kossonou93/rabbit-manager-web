@@ -32,10 +32,54 @@
                 <div class="card-body">
                   <p class="card-title mb-0">Liste des Lapins</p>
                   <br><br>
+                  <!--<div class="col-sm-16 col-md-16 col-lg-16">
+                      <img _ngcontent-ng-c3404889428="" src="C:\Users\kosso\images\5ce2da4c-ccea-4df5-a609-87bb0c842c4c_European-rabbit-3f76b72.jpg" alt="profile">
+                  </div>-->
                   <div class="table-responsive" style="height: 600px;">
-                    <table id="datatableexample"  class="table table-hover" >
-                    </table>
-                    <table id="datatableRabbit" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover"></table>
+                    <div class="mat-elevation-z8">
+                      <table mat-table [dataSource]="dataSource">
+                        <!-- Position Column -->
+                        <ng-container matColumnDef="position">
+                          <th mat-header-cell *matHeaderCellDef> Position </th>
+                          <td mat-cell *matCellDef="let element; let i = index"> {{ i + 1 }} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="name">
+                          <th mat-header-cell *matHeaderCellDef> Name </th>
+                          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                        </ng-container>
+                    
+                        <ng-container matColumnDef="status">
+                          <th mat-header-cell *matHeaderCellDef> Status </th>
+                          <td mat-cell *matCellDef="let element"><ng-container *ngIf="element.status==true else elseBlock">Activer</ng-container>
+                            <ng-template #elseBlock>Désactiver</ng-template>
+                          </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="imagePath">
+                          <th mat-header-cell *matHeaderCellDef> Image </th>
+                          <td mat-cell *matCellDef="let element"> <img style="width: 100px; height: 100px;" [src]="element.imagePath" alt="" srcset=""></td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="modifier">
+                          <th mat-header-cell *matHeaderCellDef> Modifier </th>
+                          <td mat-cell *matCellDef="let element"> <button class="btn btn-primary btn-sm" (click)="onUpdate(element)">Modifier</button> </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="supprimer">
+                          <th mat-header-cell *matHeaderCellDef> Supprimer </th>
+                          <td mat-cell *matCellDef="let element"> <button class="btn btn-danger btn-sm" (click)="onDelete(element)">Supprimer</button> </td>
+                        </ng-container>
+                    
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                      </table>
+                    
+                      <mat-paginator [pageSizeOptions]="[5, 10, 20]"showFirstLastButtons aria-label="Select page of periodic elements">
+                      </mat-paginator>
+                    </div>
+                    
+                    <!--<table id="datatableRabbit" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover"></table>-->
                   </div>
                 </div>
               </div>
@@ -45,12 +89,6 @@
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
-        <footer class="footer">
-          <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © <a href="https://www.bootstrapdash.com/" target="_blank">bootstrapdash.com </a>2021</span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Only the best <a href="https://www.bootstrapdash.com/" target="_blank"> Bootstrap dashboard </a> templates</span>
-          </div>
-        </footer>
         <!-- partial -->
       </div>
       <!-- main-panel ends -->

@@ -36,7 +36,7 @@
                     </div>
                     <div class="toast-message">
                       <div class="toast-title">{{ titleToast }}</div>
-                      <div class="toast-content">{{ messageToast }}</div>
+                      <div class="toast-content" style="text-align: center;">{{ messageToast }}</div>
                     </div>
                   </div>
                 </div>
@@ -47,10 +47,10 @@
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <p class="card-title mb-0">Ajouter un Utilisateur</p>
-                  <div class="table-responsive" style="height: 600px;">
+                  <p class="card-title mb-0" style="text-align: center;">Ajouter un Utilisateur</p>
+                  <div class="table-responsive row">
                     <br><br>
-                    <form class="forms-sample" [formGroup]="formGroup">
+                    <form class="forms-sample col-10 offset-1" [formGroup]="formGroup">
                         <div class="form-group">
                             <label for="name">Nom</label>
                             <input type="text" class="form-control" formControlName="name" id="name" placeholder="Nom">

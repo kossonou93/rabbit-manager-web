@@ -9,21 +9,21 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './add-rabbit.component.html',
   styleUrls: ['./add-rabbit.component.scss']
 })
-export class AddRabbitComponent implements OnInit{
+export class AddRabbitComponent implements OnInit {
 
   formGroup!: FormGroup;
-  nameCtr!: FormControl;
-  imageCtr!: FormControl;
 
   titleToast!: string;
   messageToast!: string;
   messageColor!: any;
 
-  constructor(private rabbitService: RabbitService, private formBuilder: FormBuilder, private toastr: ToastrService){
+  uploadedImage!: File;
+  imagePath: any;
+
+  constructor(private rabbitService: RabbitService, private formBuilder: FormBuilder, private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
-    this.initFormControl();
     this.initFormGroup();
   }
 
@@ -39,27 +39,25 @@ export class AddRabbitComponent implements OnInit{
     });
   }
 
-  private initFormGroup(): void{
-    this.formGroup = this.formBuilder.group({
-      name: this.nameCtr,
-      image: this.imageCtr
+  initFormGroup(): void {
+    this.formGroup = new FormGroup({
+      name: this.formBuilder.control('', Validators.required),
+      image: this.formBuilder.control('')
     })
   }
 
-  private initFormControl(): void{
-    this.nameCtr = this.formBuilder.control('', Validators.required);
-    this.imageCtr = this.formBuilder.control('');
-  }
-
-  addRabbit(): void{
+   addRabbit(): void {
     this.rabbitService.add(this.formGroup.value).pipe(
       tap(saved => {
-        if(saved.success){
+        if (saved.success) {
+          this.rabbitService.uploadImageFS(this.uploadedImage,
+            this.uploadedImage.name, saved.data.id).subscribe();
           this.messageColor = 'green';
           this.messageToast = saved.message;
           this.showSuccess();
+          this.imagePath = '';
           this.formGroup.reset();
-        }else{
+        } else {
           this.messageColor = 'red';
           this.messageToast = saved.message;
           this.showError();
@@ -68,8 +66,15 @@ export class AddRabbitComponent implements OnInit{
     ).subscribe();
   }
 
-  onCancel(): void{
+  onCancel(): void {
     this.formGroup.reset;
+  }
+
+  onImageUpload(event: any) {
+    this.uploadedImage = event.target.files[0];
+    var reader = new FileReader();
+    reader.readAsDataURL(this.uploadedImage);
+    reader.onload = (_event) => { this.imagePath = reader.result; }
   }
 
 }

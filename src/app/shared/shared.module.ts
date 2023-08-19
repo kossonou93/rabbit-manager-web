@@ -9,6 +9,11 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ToastrModule } from 'ngx-toastr';
 import { ToastComponent } from './components/toast/toast.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -24,7 +29,12 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     ReactiveFormsModule,
     DataTablesModule,
     FormsModule,
+    MatCardModule,
+    MatIconModule,
     ReactiveFormsModule,
+    RouterModule,
+    MatPaginatorModule,
+    MatTableModule,
     ToastrModule.forRoot(
       {
         timeOut: 100,
@@ -42,6 +52,10 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     DataTablesModule,
     FormsModule,
     ReactiveFormsModule,
+    MatCardModule,
+    MatIconModule,
+    MatPaginatorModule,
+    MatTableModule
   ]
 })
 export class SharedModule { }

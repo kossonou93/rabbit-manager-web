@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <app-header></app-header>
+
 <body>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
@@ -19,9 +20,9 @@
                   <h4 class="font-weight-bold mb-0">Rabbit</h4>
                 </div>
                 <div>
-                    <button type="button" class="btn btn-primary btn-icon-text btn-rounded" routerLink="/">
-                      <i class="ti-clipboard btn-icon-prepend"></i>Liste des Lapins
-                    </button>
+                  <button type="button" class="btn btn-primary btn-icon-text btn-rounded" routerLink="/">
+                    <i class="ti-clipboard btn-icon-prepend"></i>Liste des Lapins
+                  </button>
                 </div>
               </div>
             </div>
@@ -51,17 +52,22 @@
                   <div class="table-responsive" style="height: 600px;">
                     <br><br>
                     <form class="forms-sample" [formGroup]="formGroup">
-                        <div class="form-group">
-                          <label for="name">Nom</label>
-                          <input type="text" class="form-control" [formControl]="nameCtr" id="name" placeholder="Nom">
-                        </div>
-                        <div class="form-group">
-                          <label for="image">Photo</label>
-                          <input type="file" class="form-control" id="image" [formControl]="imageCtr" placeholder="Photo">
-                        </div>
-                        <button type="submit" class="btn btn-primary me-2" (click)="addRabbit()">Submit</button>
-                        <button class="btn btn-light" (click)="onCancel()">Cancel</button>
-                      </form>
+                      <div class="form-group">
+                        <label for="name">Nom</label>
+                        <input type="text" class="form-control" formControlName="name" id="name" placeholder="Nom">
+                      </div>
+                      <div class="form-group">
+                        <label for="image">Photo</label>
+                        <input type="file" (change)="onImageUpload($event)" formControlName="image" placeholder="Photo" class="form-control">
+                      </div>
+                      <div class="col-sm-16 col-md-16 col-lg-16">
+                        <img [src]="imagePath" class="card-img-top img-fluid rounded-start"
+                          style="width: 500px; height: 300px" />
+                      </div>
+                      <br>
+                      <button type="submit" class="btn btn-primary me-2" (click)="addRabbit()">Submit</button>
+                      <button class="btn btn-light" (click)="onCancel()">Cancel</button>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -80,4 +86,3 @@
 </body>
 
 </html>
-

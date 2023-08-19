@@ -22852,3 +22852,7 @@ display: none;
   font-weight: bold;
 }
 
+
+table {
+  width: 100%;
+}

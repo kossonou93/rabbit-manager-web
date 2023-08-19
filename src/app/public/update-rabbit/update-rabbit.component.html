@@ -53,17 +53,23 @@
                   <p class="card-title mb-0">Modifier un Lapin</p>
                   <div class="table-responsive" style="height: 600px;">
                     <br><br>
-                    <form class="forms-sample" [formGroup]="formGroup">
+                    <form class="forms-sample" [formGroup]="formGroup" (ngSubmit)="updateRabbit()">
                         <div class="form-group">
                           <label for="name">Nom</label>
-                          <input type="text" class="form-control" [formControl]="nameCtr" placeholder="Nom" required>
+                          <input type="text" class="form-control" formControlName="name" placeholder="Nom" required>
+                          <span *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+                            <div *ngIf="f['name'].errors['required']">Name is required</div>
+                          </span>
                         </div>
-                        <span *ngIf="!nameCtr.valid && (nameCtr.dirty || nameCtr.touched)" style="color: red;">Veillez entrer votre nom d'utilisateur</span>
                         <div class="form-group">
                           <label for="image">Photo</label>
-                          <input type="file" class="form-control" id="image" [formControl]="imageCtr" placeholder="Photo">
+                          <input type="file" class="form-control" (change)="onImageUpload($event)" placeholder="Photo">
                         </div>
-                        <button type="submit" class="btn btn-primary me-2" (click)="updateRabbit()">Submit</button>
+                        <div class="col-sm-16 col-md-16 col-lg-16">
+                          <img [src]="imagePath" class="card-img-top img-fluid rounded-start" style="width: 500px; height: 300px" />
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-primary me-2">Submit</button>
                         <button class="btn btn-light" (click)="onCancel()">Cancel</button>
                       </form>
                   </div>

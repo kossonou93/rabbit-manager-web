@@ -10,7 +10,7 @@ import { AuthService } from './services/auth.service';
 @NgModule({
   declarations: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
   ],
   imports: [
     CommonModule,
